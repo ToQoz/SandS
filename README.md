@@ -6,7 +6,7 @@
 
 ## Install
 
-![download SandS.app.zip](https://github.com/ToQoz/SandS/releases/download/v1.0/SandS.app.zip)
+[download SandS.app.zip](https://github.com/ToQoz/SandS/releases/download/v1.0/SandS.app.zip)
 
 ## Tested on
 
