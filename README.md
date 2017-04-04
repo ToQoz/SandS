@@ -17,5 +17,6 @@
 
 ### Emacs.app
 
-SandS doesn't work with https://github.com/railwaycat/homebrew-emacsmacport (in GUI mode). #3
+SandS doesn't work with https://github.com/railwaycat/homebrew-emacsmacport (in GUI mode). [#3](https://github.com/ToQoz/SandS/issues/3)
+
 Please use https://github.com/d12frosted/homebrew-emacs-plus.
