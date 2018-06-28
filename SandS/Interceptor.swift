@@ -61,9 +61,25 @@ class Interceptor: NSObject {
             case .SandS, .Shift:
                 self.mode = .Shift
                 event.cgEvent.setIntegerValueField(.keyboardEventKeycode, value: Int64(event.keyCode))
-                event.cgEvent.flags = CGEventFlags(
-                    rawValue: event.flags.rawValue | CGEventFlags.maskShift.rawValue
-                )
+                if (event.flags.rawValue & CGEventFlags.maskShift.rawValue == 0) {
+                    event.cgEvent.flags = CGEventFlags(
+                        rawValue: event.flags.rawValue | CGEventFlags.maskShift.rawValue
+                    )
+                } else {
+                    // e.g. 1
+                    //   1. press space
+                    //   2. press shift+a at the same time
+                    //     -> a
+                    // e.g. 2
+                    //   1. press space
+                    //   2. press shift+; at the same time
+                    //     -> ;
+                    
+                    // WORKAROUND for `Exchange semicolon and colon` https://pqrs.org/osx/karabiner/complex_modifications/
+                    event.cgEvent.flags = CGEventFlags(
+                        rawValue: event.flags.rawValue ^ CGEventFlags.maskShift.rawValue
+                    )
+                }
             }
             
             return Unmanaged.passUnretained(event.cgEvent)
