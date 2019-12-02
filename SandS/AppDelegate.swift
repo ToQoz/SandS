@@ -1,6 +1,6 @@
 import Cocoa
 
-var statusItem = NSStatusBar.system().statusItem(withLength: CGFloat(NSVariableStatusItemLength))
+var statusItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
 
 func interceptCGEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
     if let r = refcon {
@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool { return false }
 
-    func checkAXIsProcessTrusted(_ timer: Timer) {
+    @objc func checkAXIsProcessTrusted(_ timer: Timer) {
         if AXIsProcessTrusted() {
             timer.invalidate()
             activate()
@@ -72,7 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         CFRunLoopRun()
     }
 
-    func quit(_ sender: Any) {
-        NSApplication.shared().terminate(self)
+    @objc func quit(_ sender: Any) {
+        NSApplication.shared.terminate(self)
     }
 }
